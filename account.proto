@@ -1,0 +1,56 @@
+syntax = "proto3";
+package protobuf;
+
+service Account {
+	// 登陆
+    rpc Login (LoginRequest) returns (LoginResponse);
+    // 注册
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+    // 登陆校验
+    rpc Auth (AuthRequest) returns(AuthResponse);
+    // 修改密码
+    rpc ModifyPassword (ModifyPasswordRequest) returns(ModifyPasswordResponse);
+    // 重置密码
+    rpc ResetPassword (ResetPasswordRequest) returns(ResetPasswordResponse);
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string session_id = 2;
+    int32 uid = 3;
+}
+
+message RegisterRequest {
+	string email = 1;
+}
+
+message RegisterResponse {
+}
+
+message AuthRequest {
+    int32 uid = 1;
+	string session_id = 2;
+}
+
+message AuthResponse {
+}
+
+message ModifyPasswordRequest {
+	int32 uid = 1;
+	string old_password = 2;
+	string new_password = 3;
+}
+
+message ModifyPasswordResponse {
+}
+
+message ResetPasswordRequest {
+	int32 uid = 1;
+}
+
+message ResetPasswordResponse {
+}
