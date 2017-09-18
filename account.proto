@@ -8,10 +8,10 @@ service Account {
     rpc Register (RegisterRequest) returns (RegisterResponse);
     // 登陆校验
     rpc Auth (AuthRequest) returns(AuthResponse);
-    // 修改密码
-    rpc ModifyPassword (ModifyPasswordRequest) returns(ModifyPasswordResponse);
     // 重置密码
     rpc ResetPassword (ResetPasswordRequest) returns(ResetPasswordResponse);
+    // 发送留言邮件
+    rpc Email (EmailRequest) returns(EmailResponse);
 }
 
 message LoginRequest {
@@ -21,36 +21,38 @@ message LoginRequest {
 
 message LoginResponse {
     string session_id = 2;
-    int32 uid = 3;
+    string user_id = 3;
 }
 
 message RegisterRequest {
 	string email = 1;
+    string name = 2;
 }
 
 message RegisterResponse {
 }
 
 message AuthRequest {
-    int32 uid = 1;
+    string user_id = 1;
 	string session_id = 2;
 }
 
 message AuthResponse {
 }
 
-message ModifyPasswordRequest {
-	int32 uid = 1;
-	string old_password = 2;
-	string new_password = 3;
-}
-
-message ModifyPasswordResponse {
-}
-
 message ResetPasswordRequest {
-	int32 uid = 1;
+	string email = 1;
 }
 
 message ResetPasswordResponse {
+}
+
+message EmailRequest {
+    string user_id = 1;
+    string Subject = 2;
+    string Body = 3;
+}
+
+message EmailResponse {
+    
 }

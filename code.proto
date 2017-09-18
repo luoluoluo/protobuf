@@ -1,13 +1,27 @@
 syntax = "proto3";
 package protobuf;
 
-// 业务status code
+// status code
 enum Code {
-	// 0 - 99 系统预留
+	// 0 - 99 系统预留, google.golang.org/grpc/codes
 	OK = 0; // 成功
-	Bad_Request = 1; // 错误的请求
-	Unauthorized = 2; // 未授权
-	Internal_Server_Error = 3; // 内部服务器错误 
+	Canceled = 1;
+	Unknown = 2;
+	InvalidArgument = 3; // http 400
+	DeadlineExceeded = 4;
+	NotFound = 5; // http 404
+	AlreadyExists = 6;
+	PermissionDenied = 7; // http 403
+	Unauthenticated = 16; // http 401
+	ResourceExhausted = 8; // http 429
+	FailedPrecondition = 9;
+	Aborted = 10;
+	OutOfRange = 11;
+	Unimplemented = 12;
+	Internal = 13; // http 500
+	Unavailable = 14; // http 503
+	DataLoss = 15;
+
 	// account 服务从100 - 199
     EMAIL_EXISTED = 100; // 注册邮箱已存在
     SESSION_INVALID = 101; // 无效的session

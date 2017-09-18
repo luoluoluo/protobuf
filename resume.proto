@@ -1,0 +1,97 @@
+syntax = "proto3";
+package protobuf;
+
+service Resume {
+	// 简历列表
+    rpc Profiles (ProfilesRequest) returns (ProfilesResponse);
+    // 简历详情
+    rpc Profile (ProfileRequest) returns (ProfileResponse);
+    // profile 编辑
+    rpc UpdateProfile (UpdateProfileRequest) returns (UpdateProfileResponse);
+    // 新增项目
+    rpc AddProject (AddProjectRequest) returns (AddProjectResponse);
+    // 编辑项目
+    rpc UpdateProject (UpdateProjectRequest ) returns (UpdateProjectResponse);
+    // 删除项目
+    rpc DeleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
+}
+
+message Profile {
+	string user_id =1;
+	string avatar = 2;
+    string name = 3;
+    string title = 4;
+    string skills = 5;
+    string projects = 6;
+}
+
+message Project{
+	string project_id = 1;
+	string title = 2;
+	string link = 3;
+	string description = 4;
+};
+
+message ProfilesRequest {
+    int32 page = 1;
+    int32 size = 2;
+}
+
+message ProfilesResponse {
+	repeated Profile items = 1;
+	int32 total_items = 3;
+}
+
+message ProfileRequest {
+	string user_id = 1;
+}
+
+message ProfileResponse {
+	string user_id = 1;
+	string avatar = 2;
+	string name = 3;
+	string title = 4;
+	string skills = 5;
+	string description = 6;
+	repeated Project projects = 7;
+}
+
+message UpdateProfileRequest {
+	string user_id =1;
+	string avatar = 2;
+    string name = 3;
+    string title = 4;
+    string skills = 5;
+    string description = 6;
+}
+
+message UpdateProfileResponse {
+}
+
+message AddProjectRequest {
+	string user_id = 1;
+	Project project = 2;
+}
+
+message AddProjectResponse {
+	string project_id = 1;
+}
+
+message UpdateProjectRequest {
+	string user_id = 1;
+	string project_id = 2;
+	Project project = 3;
+}
+
+message UpdateProjectResponse {
+	
+}
+
+message DeleteProjectRequest {
+	string user_id = 1;
+	string project_id = 2;
+}
+
+message DeleteProjectResponse {
+	
+}
